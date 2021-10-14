@@ -96,11 +96,19 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget> implem
             child: _buildContents(),
           ),
           _buildSkip(),
-          if (widget.bottomRightWidget != null)
-            Align(
-              alignment: currentTarget?.alignBottomRight ?? widget.alignBottomRight,
-              child: widget.bottomRightWidget!,
-            ),
+          if (widget.bottomRightWidget != null) ...[
+            (currentTarget?.alignBottomRight ?? widget.alignBottomRight) == Alignment.bottomRight
+                ? Positioned(
+                    child: widget.bottomRightWidget!,
+                    bottom: 0,
+                    right: 0,
+                  )
+                : Positioned(
+                    child: widget.bottomRightWidget!,
+                    right: 0,
+                    top: 0,
+                  )
+          ]
         ],
       ),
     );
