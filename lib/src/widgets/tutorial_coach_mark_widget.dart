@@ -208,28 +208,18 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget> implem
 
     if ((currentTarget?.alignBottomRight ?? widget.alignBottomRight) == Alignment.bottomRight) {
       return Positioned(
+        bottom: 0,
+        right: 0,
         child: SafeArea(
-          child: AnimatedOpacity(
-              opacity: showContent ? 1 : 0,
-              duration: Duration(milliseconds: 300),
-              child: Positioned(
-                child: widget.bottomRightWidget!,
-                bottom: 0,
-                right: 0,
-              )),
+          child: AnimatedOpacity(opacity: showContent ? 1 : 0, duration: Duration(milliseconds: 300), child: widget.bottomRightWidget!),
         ),
       );
     }
     return Positioned(
+      right: 0,
+      top: 0,
       child: SafeArea(
-        child: AnimatedOpacity(
-            opacity: showContent ? 1 : 0,
-            duration: Duration(milliseconds: 300),
-            child: Positioned(
-              child: widget.bottomRightWidget!,
-              right: 0,
-              top: 0,
-            )),
+        child: AnimatedOpacity(opacity: showContent ? 1 : 0, duration: Duration(milliseconds: 300), child: widget.bottomRightWidget!),
       ),
     );
   }
