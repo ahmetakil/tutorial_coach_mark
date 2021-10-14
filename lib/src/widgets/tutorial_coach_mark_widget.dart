@@ -206,21 +206,31 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget> implem
       return SizedBox.shrink();
     }
 
-    return SafeArea(
-      child: AnimatedOpacity(
-          opacity: showContent ? 1 : 0,
-          duration: Duration(milliseconds: 300),
-          child: (currentTarget?.alignBottomRight ?? widget.alignBottomRight) == Alignment.bottomRight
-              ? Positioned(
-                  child: widget.bottomRightWidget!,
-                  bottom: 0,
-                  right: 0,
-                )
-              : Positioned(
-                  child: widget.bottomRightWidget!,
-                  right: 0,
-                  top: 0,
-                )),
+    if ((currentTarget?.alignBottomRight ?? widget.alignBottomRight) == Alignment.bottomRight) {
+      return Positioned(
+        child: SafeArea(
+          child: AnimatedOpacity(
+              opacity: showContent ? 1 : 0,
+              duration: Duration(milliseconds: 300),
+              child: Positioned(
+                child: widget.bottomRightWidget!,
+                bottom: 0,
+                right: 0,
+              )),
+        ),
+      );
+    }
+    return Positioned(
+      child: SafeArea(
+        child: AnimatedOpacity(
+            opacity: showContent ? 1 : 0,
+            duration: Duration(milliseconds: 300),
+            child: Positioned(
+              child: widget.bottomRightWidget!,
+              right: 0,
+              top: 0,
+            )),
+      ),
     );
   }
 
