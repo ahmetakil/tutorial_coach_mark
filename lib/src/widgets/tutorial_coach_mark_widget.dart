@@ -5,26 +5,27 @@ import 'package:tutorial_coach_mark/src/util.dart';
 import 'package:tutorial_coach_mark/src/widgets/animated_focus_light.dart';
 
 class TutorialCoachMarkWidget extends StatefulWidget {
-  const TutorialCoachMarkWidget({
-    Key? key,
-    required this.targets,
-    this.finish,
-    this.paddingFocus = 10,
-    this.clickTarget,
-    this.clickOverlay,
-    this.alignSkip = Alignment.bottomRight,
-    this.textSkip = "SKIP",
-    this.onClickSkip,
-    this.colorShadow = Colors.black,
-    this.opacityShadow = 0.8,
-    this.textStyleSkip = const TextStyle(color: Colors.white),
-    this.hideSkip,
-    this.focusAnimationDuration,
-    this.pulseAnimationDuration,
-    this.pulseVariation,
-    this.skipWidget,
-    this.bottomRightWidget,
-  })  : assert(targets.length > 0),
+  const TutorialCoachMarkWidget(
+      {Key? key,
+      required this.targets,
+      this.finish,
+      this.paddingFocus = 10,
+      this.clickTarget,
+      this.clickOverlay,
+      this.alignSkip = Alignment.bottomRight,
+      this.textSkip = "SKIP",
+      this.onClickSkip,
+      this.colorShadow = Colors.black,
+      this.opacityShadow = 0.8,
+      this.textStyleSkip = const TextStyle(color: Colors.white),
+      this.hideSkip,
+      this.focusAnimationDuration,
+      this.pulseAnimationDuration,
+      this.pulseVariation,
+      this.skipWidget,
+      this.bottomRightWidget,
+      this.alignBottomRight = Alignment.bottomRight})
+      : assert(targets.length > 0),
         super(key: key);
 
   final List<TargetFocus> targets;
@@ -44,6 +45,7 @@ class TutorialCoachMarkWidget extends StatefulWidget {
   final Tween<double>? pulseVariation;
   final Widget? skipWidget;
   final Widget? bottomRightWidget;
+  final AlignmentGeometry alignBottomRight;
 
   @override
   TutorialCoachMarkWidgetState createState() => TutorialCoachMarkWidgetState();
@@ -94,12 +96,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget> implem
             child: _buildContents(),
           ),
           _buildSkip(),
-          if (widget.bottomRightWidget != null)
-            Positioned(
-              right: 0,
-              bottom: 0,
-              child: widget.bottomRightWidget!,
-            ),
+          if (widget.bottomRightWidget != null) Align(alignment: widget.alignBottomRight, child: widget.bottomRightWidget!),
         ],
       ),
     );

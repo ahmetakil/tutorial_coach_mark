@@ -28,6 +28,7 @@ class TutorialCoachMark {
   final Duration pulseAnimationDuration;
   final Widget? skipWidget;
   final Widget? bottomRightWidget;
+  final AlignmentGeometry alignBottomRight;
 
   OverlayEntry? _overlayEntry;
 
@@ -47,7 +48,8 @@ class TutorialCoachMark {
       this.focusAnimationDuration = const Duration(milliseconds: 600),
       this.pulseAnimationDuration = const Duration(milliseconds: 500),
       this.skipWidget,
-      this.bottomRightWidget})
+      this.bottomRightWidget,
+      this.alignBottomRight = Alignment.bottomRight})
       : assert(opacityShadow >= 0 && opacityShadow <= 1);
 
   OverlayEntry _buildOverlay() {
@@ -71,6 +73,7 @@ class TutorialCoachMark {
           pulseAnimationDuration: pulseAnimationDuration,
           finish: finish,
           bottomRightWidget: bottomRightWidget,
+          alignBottomRight: alignBottomRight,
         );
       },
     );
